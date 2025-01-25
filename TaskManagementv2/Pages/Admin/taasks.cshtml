@@ -1,0 +1,73 @@
+﻿@page 
+@model TaskManagementv2.Pages.Admin.taasksModel
+@{
+    ViewData["Title"] = "Tasks List";
+}
+<a asp-page="Create" class="btn btn-primary mb-2">Create New Task</a>
+
+<div class="card-shadow">
+    <div class="card-header">
+        @ViewData["Title"]
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taasks[0].Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taasks[0].Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taasks[0].Priority)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taasks[0].Deadline)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taasks[0].UpdatedDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Taasks[0].Status)
+                    </th>
+                    <th>@Html.DisplayNameFor(Model => Model.Taasks[0].AssignedTo)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Taasks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Deadline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelIthm => item.AssignedTo)
+                        </td>
+                      
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.TaskId" class="btn btn-primary">Edit</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.TaskId" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Task Management System";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4">Task Management System</h1>
+        <p class="lead">Streamline your workflow and stay on top of your tasks.</p>
+    </div>
+
+    <div class="row mt-5">
+        <!-- Admin Panel Section -->
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Admin Panel</h5>
+                    <p class="card-text">Log in as an admin to manage tasks, assign priorities, and track deadlines.</p>
+                    <a href="/Admin/login" class="btn btn-primary">Go to Admin Panel</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tasks Overview Section -->
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Tasks Overview</h5>
+                    <p class="card-text">View all your tasks and their statuses in one place.</p>
+                    <a href="/Admin/login" class="btn btn-success">View Tasks</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help & Support Section -->
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Help & Support</h5>
+                    <p class="card-text">Need assistance? Access our support resources to get help.</p>
+                    <a href="/Help" class="btn btn-secondary">Get Help</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
