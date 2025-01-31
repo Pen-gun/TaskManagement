@@ -3,134 +3,114 @@
 @{
     ViewData["Title"] = "Tasks List";
 }
-
-@* <div class="card-shadow"> *@
-@*     <div class="card-header"> *@
-@*         @ViewData["Title"] *@
-@*     </div> *@
-@*     <div class="card-body"> *@
-@*         <table class="table"> *@
-@*             <thead> *@
-@*                 <tr> *@
-@*                     <th> *@
-@*                         @Html.DisplayNameFor(model => model.Taasks[0].Title) *@
-@*                     </th> *@
-@*                     <th> *@
-@*                         @Html.DisplayNameFor(model => model.Taasks[0].Description) *@
-@*                     </th> *@
-@*                     <th> *@
-@*                         @Html.DisplayNameFor(model => model.Taasks[0].Priority) *@
-@*                     </th> *@
-@*                     <th> *@
-@*                         @Html.DisplayNameFor(model => model.Taasks[0].Deadline) *@
-@*                     </th> *@
-@*                     <th> *@
-@*                         @Html.DisplayNameFor(model => model.Taasks[0].UpdatedDate) *@
-@*                     </th> *@
-@*                     <th> *@
-@*                         @Html.DisplayNameFor(model => model.Taasks[0].Status) *@
-@*                     </th> *@
-@*                     <th>@Html.DisplayNameFor(Model => Model.Taasks[0].AssignedTo)</th> *@
-@*                     <th>Action</th> *@
-@*                 </tr> *@
-@*             </thead> *@
-@*             <tbody> *@
-@*                 @foreach (var item in Model.Taasks) *@
-@*                 { *@
-@*                     <tr> *@
-@*                         <td> *@
-@*                             @Html.DisplayFor(modelItem => item.Title) *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             @Html.DisplayFor(modelItem => item.Description) *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             @Html.DisplayFor(modelItem => item.Priority) *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             @Html.DisplayFor(modelItem => item.Deadline) *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             @Html.DisplayFor(modelItem => item.UpdatedDate) *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             @Html.DisplayFor(modelItem => item.Status) *@
-@*                         </td> *@
-@*                         <td> *@
-@*                             @Html.DisplayFor(modelIthm => item.AssignedTo) *@
-@*                         </td> *@
-                      
-@*                         <td> *@
-@*                             <a asp-page="./Edit" asp-route-id="@item.TaskId" class="btn btn-primary">Edit</a> | *@
-@*                             <a asp-page="./Delete" asp-route-id="@item.TaskId" class="btn btn-danger">Delete</a> *@
-@*                         </td> *@
-@*                     </tr> *@
-@*                 } *@
-@*             </tbody> *@
-@*         </table> *@
-@*     </div> *@
-@* </div> *@
 <div class="card-shadow">
+
     <div class="card-header">
         @ViewData["Title"]
     </div>
     <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Taasks[0].Title)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Taasks[0].Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Taasks[0].Priority)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Taasks[0].Deadline)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Taasks[0].UpdatedDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Taasks[0].Status)
-                    </th>
-                    <th>@Html.DisplayNameFor(Model => Model.Taasks[0].AssignedTo)</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Taasks)
-                {
+        <!-- Filters -->
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <input type="text" id="taskFilters" class="form-control" placeholder="Search tasks...">
+            </div>
+            <div class="col-md-3">
+                <select id="priorityFilters" class="form-control">
+                    <option value="">Filter by Priority</option>
+                    <option value="3">High</option>
+                    <option value="2">Medium</option>
+                    <option value="1">Low</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="statusFilters" class="form-control">
+                    <option value="">Filter by Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="In-Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Not Started">Not started</option>
+                </select>
+            </div>
+        </div>
+        <div id="taskTableWrapper">
+            <table class="table" id="taskTable">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Priority)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Deadline)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UpdatedDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AssignedTo)
-                        </td>
-                        <td>
-                            <a asp-page="./Edit" asp-route-id="@item.TaskId" class="btn btn-primary">Edit</a> |
-                        </td>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Taasks[0].Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Taasks[0].Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Taasks[0].Priority)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Taasks[0].Deadline)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Taasks[0].UpdatedDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Taasks[0].Status)
+                        </th>
+                        <th>@Html.DisplayNameFor(Model => Model.Taasks[0].AssignedTo)</th>
+                        <th>Action</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Taasks)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td class="priority">
+                                @Html.DisplayFor(modelItem => item.Priority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Deadline)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpdatedDate)
+                            </td>
+                            <td class="status">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssignedTo)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.TaskId" class="btn btn-primary">Edit</a> |
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+<!-- jQuery & Filtering Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function filterTasks() {
+            var textSearch = $("#taskFilters").val().toLowerCase();
+            var selectedPriority = $("#priorityFilters").val();
+            var selectedStatus = $("#statusFilters").val();
+
+            $("#taskTable tbody tr").each(function () {
+                var textMatch = $(this).text().toLowerCase().includes(textSearch);
+                var priorityMatch = selectedPriority === "" || $(this).find(".priority").text().trim().toLowerCase() === selectedPriority.toLowerCase();
+                var statusMatch = selectedStatus === "" || $(this).find(".status").text().trim().toLowerCase() === selectedStatus.toLowerCase();
+
+                $(this).toggle(textMatch && priorityMatch && statusMatch);
+            });
+        }
+
+        $("#taskFilters, #priorityFilters, #statusFilters").on("input change", filterTasks);
+    });
+</script>
